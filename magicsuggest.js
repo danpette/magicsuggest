@@ -1547,7 +1547,9 @@
             var def = {};
             // set values from DOM container element
             $.each(this.attributes, function(i, att){
-                def[att.name] = att.name === 'value' && att.value !== '' ? JSON.parse(att.value) : att.value;
+                try {
+                    def[att.name] = att.name === 'value' && att.value !== '' ? JSON.parse(att.value) : att.value;
+                } catch(e){}
             });
 
             var field = new MagicSuggest(this, $.extend([], $.fn.magicSuggest.defaults, options, def));
